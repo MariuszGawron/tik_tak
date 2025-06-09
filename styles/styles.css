@@ -1,0 +1,181 @@
+:root {
+  --background-color: #111;
+  --background-flash-color: #0f0;
+  --clock-color: #0f0;
+  --clock-flash-color: #111;
+  --clock-size: 5em;
+}
+
+body {
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--background-color);
+  color: var(--clock-color);
+  font-size: var(--clock-size);
+  text-align: center;
+  margin: 0;
+  position: relative;
+}
+
+.flash {
+  background: var(--background-flash-color);
+  color: var(--clock-flash-color);
+}
+
+label,
+input {
+  font-size: 0.2em;
+}
+
+h5,
+legend {
+  font-size: 0.3em;
+}
+
+.mode {
+  position: fixed;
+  left: 1%;
+  transition: 1.5s;
+  font-size: 0.2em;
+  cursor: pointer;
+}
+
+.clock {
+  top: 50%;
+}
+.timer {
+  top: 1%;
+}
+.stopwatch {
+  top: 99%;
+  transform: translateY(-100%);
+}
+
+.center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  transition: 1.5s;
+  font-size: 1em;
+  cursor: auto;
+}
+
+#settingsBtn {
+  position: absolute;
+  top: 0.3em;
+  left: -2em;
+  font-size: 0.5em;
+  background: none;
+  border: none;
+  color: var(--clock-color);
+  cursor: pointer;
+  z-index: 1001;
+}
+
+#settingsPanel {
+  position: fixed;
+  top: 0;
+  right: -5.6em;
+  width: 5em;
+  height: 100vh;
+  background: #222;
+  color: white;
+  padding: 0.2em;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.8);
+  transition: right 0.3s ease;
+  z-index: 1000;
+  /* overflow-y: auto; */
+  font-size: 0.9em;
+}
+
+#settingsPanel.open {
+  right: 0;
+}
+
+.mode-settings {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: auto;
+}
+
+.hidden {
+  display: none;
+}
+
+fieldset {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0.2em;
+  margin: 0.2em;
+}
+
+button {
+  font-size: 0.2em;
+  cursor: pointer;
+  background: #0a0;
+  border: none;
+  color: white;
+  border-radius: 0.2em;
+}
+
+button:disabled {
+  background: #444;
+  cursor: not-allowed;
+}
+
+select {
+  width: 9em;
+  height: 2em;
+  font-size: 0.2em;
+}
+
+#lapsList {
+  list-style: none;
+  padding: 0;
+  max-height: 40vh;
+  overflow-y: auto;
+  margin-top: 0.5em;
+  color: #0f0;
+  font-size: 0.5em;
+}
+
+#lapsList li {
+  border-bottom: 1px solid #444;
+  padding: 2px 0;
+}
+
+.tabs {
+  display: flex;
+  gap: 0.5em;
+}
+
+.tab {
+  flex: 1;
+  padding: 0.5em;
+  background: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.tab.active {
+  background: #555;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content:not(.hidden) {
+  display: block;
+}
+
+#stopwatchDisplay {
+  font-size: 0.5em;
+  margin: 0.5em 0;
+}

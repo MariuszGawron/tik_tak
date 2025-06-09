@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tik Tak</title>
+    <link rel="stylesheet" type="text/css" href="styles/styles.css" />
+    <script src="scripts/timer.js" defer></script>
+    <script src="scripts/mode.js" defer></script>
+  </head>
+
+  <body class="">
+    <div id="clock" class="mode clock center" aria-live="polite"></div>
+    <div id="timer" class="mode timer" aria-live="polite">00:00:00</div>
+    <div id="stopwatch" class="mode stopwatch" aria-live="polite">00:00:00.00</div>
+    <div id="settingsPanel" aria-label="Panel ustawień" role="region" aria-hidden="true">
+      <button id="settingsBtn" aria-label="Ustawienia">⚙️</button>
+
+      <fieldset>
+        <button class="tab active" data-tab="mode">Tryby</button>
+        <button class="tab" data-tab="style">Styl</button>
+        <button class="tab" data-tab="extra">Inne</button>
+      </fieldset>
+
+      <div class="tab-content" id="modeTab">
+        <fieldset class="mode-selection">
+          <legend>Tryb</legend>
+          <label><input type="radio" name="mode" value="clock" checked /> Zegar</label>
+          <label><input type="radio" name="mode" value="timer" /> Minutnik</label>
+          <label><input type="radio" name="mode" value="stopwatch" /> Stoper</label>
+        </fieldset>
+
+        <!-- ZEGAR -->
+        <div class="mode-settings" id="mode-clock">
+          <h5>Zegar</h5>
+          <fieldset>
+            <label for="clockContent">Co wyświetlać:</label>
+            <select id="clockContent" name="clockContent" aria-describedby="clockContentHelp">
+              <option value="time">Tylko czas</option>
+              <option value="date">Tylko data</option>
+              <option value="timeDate">Czas + data</option>
+            </select>
+          </fieldset>
+          <fieldset>
+            <label for="timeFormat">Format czasu:</label>
+            <select id="timeFormat" name="timeFormat">
+              <option value="24" selected>24h</option>
+              <option value="12">12h</option>
+            </select>
+          </fieldset>
+          <fieldset>
+            <label for="dateFormat">Format daty:</label>
+            <select id="dateFormat" name="dateFormat">
+              <option value="dd-mm-yyyy" selected>DD-MM-RRRR</option>
+              <option value="yyyy-mm-dd">RRRR-MM-DD</option>
+              <option value="yyyy-dd-mm">RRRR-DD-MM</option>
+              <option value="weekday-dd-mmm">Dzień, DD MMM</option>
+              <option value="weekday-full">Dzień, DD MMMM RRRR</option>
+            </select>
+          </fieldset>
+        </div>
+
+        <!-- MINUTNIK -->
+        <div id="mode-timer" class="mode-settings hidden">
+          <h5>Minutnik</h5>
+          <fieldset>
+            <label for="timerHours">H:</label>
+            <input type="number" id="timerHours" min="0" max="23" value="0" />
+            <label for="timerMinutes">M:</label>
+            <input type="number" id="timerMinutes" min="0" max="59" value="0" />
+            <label for="timerSeconds">S:</label>
+            <input type="number" id="timerSeconds" min="0" max="59" value="0" />
+          </fieldset>
+          <fieldset>
+            <button id="startTimer">Start</button>
+            <button id="resetTimer" disabled>Reset</button>
+          </fieldset>
+        </div>
+
+        <!-- STOPER -->
+        <div id="mode-stopwatch" class="mode-settings hidden">
+          <h5>Stoper</h5>
+          <fieldset>
+            <button id="startStopwatch">Start</button>
+            <button id="stopStopwatch" disabled>Stop</button>
+            <button id="resetStopwatch" disabled>Reset</button>
+            <button id="lapStopwatch" disabled>Okrążenie</button>
+          </fieldset>
+          <ul id="lapsList" aria-live="polite"></ul>
+        </div>
+      </div>
+
+      <div class="tab-content hidden" id="styleTab">
+        <h5>Ustawienia wyglądu</h5>
+        <fieldset>
+          <legend>Ogólne</legend>
+          <label> Kolor tła: </label>
+          <input type="color" id="backgroundColorPicker" />
+          <label> Kolor zegara: </label>
+          <input type="color" id="clockColorPicker" />
+        </fieldset>
+        <fieldset>
+          <legend>Alarm</legend>
+          <label> Kolor tła: </label>
+          <input type="color" id="backgroundFlashColorPicker" />
+          <label> Kolor zegara: </label>
+          <input type="color" id="clockFlashColorPicker" />
+        </fieldset>
+        <fieldset>
+          <label> Rozmiar: </label>
+          <input type="number" id="clockSizeRange" min="1" max="8" step="1" />
+        </fieldset>
+      </div>
+      <div class="tab-content hidden" id="extraTab"><h5>Soon</h5></div>
+    </div>
+  </body>
+</html>
