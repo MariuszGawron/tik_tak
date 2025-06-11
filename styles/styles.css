@@ -59,7 +59,7 @@ legend {
   transform: translate(-50%, -50%);
   position: fixed;
   transition: 1.5s;
-  font-size: 1em;
+  font-size: 2em;
   cursor: auto;
 }
 
