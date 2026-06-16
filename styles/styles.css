@@ -87,7 +87,7 @@ legend {
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.8);
   transition: right 0.3s ease;
   z-index: 1000;
-  /* overflow-y: auto; */
+  overflow: auto;
   font-size: 0.9em;
 }
 
