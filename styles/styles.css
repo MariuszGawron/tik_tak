@@ -43,14 +43,19 @@ legend {
 }
 
 .clock {
-  top: 50%;
+  top: 10%;
 }
 .timer {
-  top: 1%;
+  top: 35%;
 }
 .stopwatch {
-  top: 99%;
-  transform: translateY(-100%);
+  top: 60%;
+}
+.alarm {
+  top: 85%;
+}
+.alarm.center {
+  font-size: 1.2em;
 }
 
 .center {
@@ -107,7 +112,7 @@ legend {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 fieldset {
@@ -182,4 +187,161 @@ select {
 #stopwatchDisplay {
   font-size: 0.5em;
   margin: 0.5em 0;
+}
+
+#alarmsList {
+  list-style: none;
+  padding: 0;
+  max-height: 40vh;
+  overflow-y: auto;
+  margin-top: 0.5em;
+  font-size: 0.22em;
+}
+
+#alarmsList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+  border-bottom: 1px solid #444;
+  gap: 4px;
+}
+
+#alarmsList li span {
+  text-decoration: none;
+  opacity: 1;
+}
+
+#alarmsList li.inactive span {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+#alarmsList li button {
+  padding: 2px 4px;
+  font-size: 0.7em;
+}
+
+.alarm-toggle-btn {
+  background: #444;
+}
+
+.alarm-toggle-btn.active {
+  background: #0a0;
+}
+
+.alarm-edit-btn {
+  background: #2980b9; /* Ładny niebieski kolor, nie zlewa się z żółtą kredką */
+  color: white;
+}
+
+.alarm-delete-btn {
+  background: #d00;
+}
+
+/* --- Formularz dodawania alarmu --- */
+#mode-alarm fieldset {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+}
+
+.alarm-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#alarmTime,
+#alarmCycleType,
+#alarmLabel {
+  width: 8em;
+  height: 1.8em;
+  box-sizing: border-box;
+}
+
+#alarmDaysInterval {
+  width: 3.5em;
+  height: 1.8em;
+  box-sizing: border-box;
+}
+
+#alarmCyclicOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border: 1px dashed #666;
+  padding: 4px;
+  margin: 2px 0;
+}
+
+#alarmWeekdaysOption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  justify-content: space-between;
+  font-size: 0.8em;
+}
+
+/* --- Zakładka Inne --- */
+#extraTab fieldset {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+}
+
+.extra-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.extra-row input[type="text"],
+.extra-row select {
+  width: 6.5em;
+  height: 1.8em;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.alarm-buttons {
+  display: flex;
+  margin-top: 4px;
+  gap: 4px;
+  width: 100%;
+}
+
+.alarm-buttons button {
+  flex: 1;
+  padding: 4px;
+}
+
+#cancelEditAlarm {
+  background: #555;
+}
+
+.teams-webhook-row {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2px;
+  margin-top: 4px;
+}
+
+#teamsWebhookUrl {
+  width: 100%;
+  height: 1.8em;
+  box-sizing: border-box;
+  text-align: left;
+  font-size: 0.16em; /* Dostosowane do skali em bazy */
+  padding: 2px;
+}
+
+.help-link {
+  text-decoration: none;
+  font-size: 0.8em;
+  margin-left: 2px;
+  cursor: pointer;
 }

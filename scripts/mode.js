@@ -4,11 +4,13 @@ document.addEventListener("DOMContentLoaded", function () {
     clock: document.getElementById("mode-clock"),
     timer: document.getElementById("mode-timer"),
     stopwatch: document.getElementById("mode-stopwatch"),
+    alarm: document.getElementById("mode-alarm"),
   };
   const modeSections = {
     clock: document.getElementById("clock"),
     timer: document.getElementById("timer"),
     stopwatch: document.getElementById("stopwatch"),
+    alarm: document.getElementById("alarm"),
   };
 
   function updateVisibility() {

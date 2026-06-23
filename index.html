@@ -12,6 +12,7 @@
     <div id="clock" class="mode clock center" aria-live="polite"></div>
     <div id="timer" class="mode timer" aria-live="polite">00:00:00</div>
     <div id="stopwatch" class="mode stopwatch" aria-live="polite">00:00:00.00</div>
+    <div id="alarm" class="mode alarm" aria-live="polite">Alarmy</div>
     <div id="settingsPanel" aria-label="Panel ustawień" role="region" aria-hidden="true">
       <button id="settingsBtn" aria-label="Ustawienia">⚙️</button>
       <div id="settingsPanel2">
@@ -27,6 +28,7 @@
             <label><input type="radio" name="mode" value="clock" checked /> Zegar</label>
             <label><input type="radio" name="mode" value="timer" /> Minutnik</label>
             <label><input type="radio" name="mode" value="stopwatch" /> Stoper</label>
+            <label><input type="radio" name="mode" value="alarm" /> Alarmy</label>
           </fieldset>
 
           <!-- ZEGAR -->
@@ -87,6 +89,56 @@
             </fieldset>
             <ul id="lapsList" aria-live="polite"></ul>
           </div>
+
+          <!-- ALARMY -->
+          <div id="mode-alarm" class="mode-settings hidden">
+            <h5>Alarmy</h5>
+            <fieldset>
+              <div class="alarm-row">
+                <label for="alarmTime">Czas:</label>
+                <input type="time" id="alarmTime" required />
+              </div>
+              <div class="alarm-row">
+                <label for="alarmCyclic">Cykliczny:</label>
+                <input type="checkbox" id="alarmCyclic" />
+              </div>
+
+              <!-- Opcje cykliczności -->
+              <div id="alarmCyclicOptions" class="hidden">
+                <div class="alarm-row">
+                  <label for="alarmCycleType">Typ cyklu:</label>
+                  <select id="alarmCycleType">
+                    <option value="daily">Codziennie</option>
+                    <option value="days">Co X dni</option>
+                    <option value="weekdays">Dni tygodnia</option>
+                  </select>
+                </div>
+                <div id="alarmDaysOption" class="hidden alarm-row">
+                  <label for="alarmDaysInterval">Co ile dni:</label>
+                  <input type="number" id="alarmDaysInterval" min="1" max="365" value="1" />
+                </div>
+                <div id="alarmWeekdaysOption" class="hidden">
+                  <label><input type="checkbox" name="alarmWeekday" value="1" /> Pn</label>
+                  <label><input type="checkbox" name="alarmWeekday" value="2" /> Wt</label>
+                  <label><input type="checkbox" name="alarmWeekday" value="3" /> Śr</label>
+                  <label><input type="checkbox" name="alarmWeekday" value="4" /> Cz</label>
+                  <label><input type="checkbox" name="alarmWeekday" value="5" /> Pt</label>
+                  <label><input type="checkbox" name="alarmWeekday" value="6" /> Sb</label>
+                  <label><input type="checkbox" name="alarmWeekday" value="0" /> Nd</label>
+                </div>
+              </div>
+
+              <div class="alarm-row">
+                <label for="alarmLabel">Etykieta:</label>
+                <input type="text" id="alarmLabel" placeholder="np. Leki" />
+              </div>
+              <div class="alarm-buttons">
+                <button id="addAlarm">Dodaj alarm</button>
+                <button id="cancelEditAlarm" class="hidden">Anuluj</button>
+              </div>
+            </fieldset>
+            <ul id="alarmsList" aria-live="polite"></ul>
+          </div>
         </div>
 
         <div class="tab-content hidden" id="styleTab">
@@ -110,7 +162,64 @@
             <input type="number" id="clockSizeRange" min="1" max="8" step="1" />
           </fieldset>
         </div>
-        <div class="tab-content hidden" id="extraTab"><h5>Soon</h5></div>
+        <div class="tab-content hidden" id="extraTab">
+          <h5>Ustawienia dodatkowe</h5>
+          <fieldset>
+            <legend>Dźwięki powiadomień</legend>
+            <div class="extra-row">
+              <label for="soundEnabled">Dźwięk:</label>
+              <input type="checkbox" id="soundEnabled" checked />
+            </div>
+            <div class="extra-row">
+              <label for="soundType">Rodzaj:</label>
+              <select id="soundType">
+                <option value="beep">Pisk (Beep)</option>
+                <option value="bell">Dzwonek (Bell)</option>
+                <option value="synth">Melodia (Synth)</option>
+              </select>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Karta przeglądarki</legend>
+            <div class="extra-row">
+              <label for="titleMirroring">Czas w tytule:</label>
+              <input type="checkbox" id="titleMirroring" />
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Powiadomienia zewnętrzne</legend>
+            <div class="extra-row">
+              <label for="nativeNotifications">Powiadomienia systemowe:</label>
+              <input type="checkbox" id="nativeNotifications" />
+            </div>
+            <div class="extra-row">
+              <label for="teamsEnabled">Powiadomienia MS Teams <a href="https://learn.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook" target="_blank" class="help-link" title="Jak utworzyć webhook w Teams?">❓</a>:</label>
+              <input type="checkbox" id="teamsEnabled" />
+            </div>
+            <div class="teams-webhook-row">
+              <label for="teamsWebhookUrl">URL Webhooka Teams:</label>
+              <input type="text" id="teamsWebhookUrl" placeholder="https://..." />
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Skróty klawiszowe</legend>
+            <div class="extra-row">
+              <label for="shortcutStartStop">Start / Stop:</label>
+              <input type="text" id="shortcutStartStop" readonly placeholder="Wciśnij klawisz" />
+            </div>
+            <div class="extra-row">
+              <label for="shortcutReset">Reset:</label>
+              <input type="text" id="shortcutReset" readonly placeholder="Wciśnij klawisz" />
+            </div>
+            <div class="extra-row">
+              <label for="shortcutDismiss">Wycisz alarm:</label>
+              <input type="text" id="shortcutDismiss" readonly placeholder="Wciśnij klawisz" />
+            </div>
+          </fieldset>
+        </div>
       </div>
     </div>
   </body>
